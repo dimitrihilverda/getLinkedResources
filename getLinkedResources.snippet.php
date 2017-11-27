@@ -15,7 +15,7 @@ if ($currentResource->get('class_key') == 'modSymLink') {
 	//is symlink
 	$docId = $currentResource->get('content');
 	if (!is_numeric($docId) && empty($docId)) {
-		return 'foutje';
+		return false;
 	}
 }
 
