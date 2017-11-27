@@ -52,12 +52,23 @@ if (count($symlinkObjs) != 0) {
 			$output[] = intval($page->get('id'));
 		}
 	}
+} else {
+	// no symlinks lets return the current resource
+	if ($tpl != '' ) {
+		$output .= $modx->getChunk(
+			$tpl,
+			array(
+				'id' => $docId,
+				'parent' => $currentResource->get('parent'),
+				'pagetitle' => $currentResource->get('pagetitle'),
+				'alias' => $currentResource->get('alias')
+			)
+		);
+	}
 }
 
 if (is_array($output)) {
-	if ($showSelf != 0) {
-		$output[] = $docId;
-	}
+	$output[] = $docId;
 	$output = implode(',', $output);
 }
 
